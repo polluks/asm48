@@ -73,5 +73,10 @@ lex.o : parse.o
 expr.o : parse.o
 
 
+check :
+	./asm48$(EXE) testfiles/test.asm
+	./asm48$(EXE) testfiles/test2.asm
+	./asm48$(EXE) testfiles/test3.asm
+
 clean :
 	rm asm48$(EXE) 8039dasm$(EXE) lex.yy.c *.o parse.tab.*
