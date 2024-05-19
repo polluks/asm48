@@ -452,14 +452,16 @@ int include_lex(void)
 	if ((fname = strchr(yytext, '"')) != NULL) {
 		if ((p = strchr(++fname, '"')) != NULL) *p = '\0';
 
+#ifdef UNIXOID
 	//on unixoid systems (e.g. Linux, OSX, ...)
 	//change back-slashes "\" to forward slashes "/"
-#ifdef UNIXOID
-	char* fs = strchr(fname, '\\');
-	while (fs != NULL)
 	{
-		*fs = '/';
-		fs = strchr(fname, '\\');
+		char* fs = strchr(fname, '\\');
+		while (fs != NULL)
+		{
+			*fs = '/';
+			fs = strchr(fname, '\\');
+		}
 	}
 #endif
 
